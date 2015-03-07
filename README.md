@@ -11,9 +11,13 @@ Home Automation API
 
   REST API for dio device
   
-  /dio/device/<deviceId>/command/on
+  /dio/remote/<remoteDioCode>/device/<deviceId>/command/on
+  
+  /dio/remote/<remoteDioCode>/device/<deviceId>/command/up
   
   /dio/device/<deviceId>/command/off
+  
+  /dio/device/<deviceId>/command/down
   
   REST API for rf433 device
   
@@ -24,3 +28,6 @@ Home Automation API
 ## Release History
 
 * 0.1.0 Initial release
+* 0.1.1 Remove dependencies
+* 0.1.2 Apis path modify
+* 0.1.3 Errors management
