@@ -1,13 +1,14 @@
-var remoteDio = process.env.REMOTEDIO;
+//var remoteDio = process.env.REMOTEDIO;
 var exec = require('child_process').exec;
 
 
 exports.deviceCommand = function(req, res){
+    var remoteDio = req.params.remoteDio;
     var deviceId = req.params.deviceId;
     var command = req.params.command;
 
-    runDeviceCommand(deviceId,command,function() {
-        res.send("OK");
+    runDeviceCommand(remoteDio, deviceId,command,function(error) {
+        res.send(error);
     });
 
 };
@@ -21,21 +22,24 @@ function translateCommand(word){
         case "down":
             return "0";
         default :
-            return "-1";
+            return null;
     }
 }
 
-function runDeviceCommand(deviceId,command,callback) {
+function runDeviceCommand(remoteDio, deviceId,command,callback) {
 
     var commandCode = translateCommand(command);
-    var commandLine = 'sudo send-dio 0 '+remoteDio+' '+deviceId+' '+commandCode;
-
-    console.log(commandLine);
-    /* exec(commandLine, function (error, stdout, stderr) {
-      if(error) console.error(error);
-          if (callback) callback();
-      });
-      */
-    callback();
+    if (commandCode != null) {
+        var commandLine = 'sudo send-dio 0 '+remoteDio+' '+deviceId+' '+commandCode;
     
+        console.log(commandLine);
+         exec(commandLine, function (error, stdout, stderr) {
+          if(error) console.error(error);
+          //return null if no error 
+          callback(error);
+        });
+    } else {
+        callback( new Error("Invalid command " + command));
+    }
+
 };

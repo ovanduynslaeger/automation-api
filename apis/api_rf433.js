@@ -15,13 +15,11 @@ exports.deviceCommand = function(req, res){
 function translateCommand(word){
     switch (word) {
         case "on":
-        case "up":
             return "1";
         case "off":
-        case "down":
             return "0";
         default :
-            return "-1";
+            return null;
     }
 }
 
@@ -29,14 +27,17 @@ function translateCommand(word){
 function runDeviceCommand(homeCode,deviceId,command,callback) {
 
     var commandCode = translateCommand(command);
-    var commandLine = 'sudo send-rf433 0 '+homeCode+' '+deviceId+' '+commandCode;
-
-    console.log(commandLine);
-    /* exec(commandLine, function (error, stdout, stderr) {
-      if(error) console.error(error);
-          if (callback) callback();
-      });
-      */
-    callback();
+    if (commandCode != null) {
+        var commandLine = 'sudo send-rf433 0 '+homeCode+' '+deviceId+' '+commandCode;
+    
+        console.log(commandLine);
+         exec(commandLine, function (error, stdout, stderr) {
+              if(error) console.error(error);
+              //return null if no error 
+              callback(error);
+          });
+    } else {
+        callback( new Error("Invalid command " + command));
+    }
     
 };
