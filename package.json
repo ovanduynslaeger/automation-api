@@ -1,6 +1,6 @@
 {
   "name": "automation-api",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Home Automation API",
   "main": "index.js",
   "devDependencies": {
