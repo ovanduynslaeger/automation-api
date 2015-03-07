@@ -3,11 +3,11 @@ Home Automation API
 
 ## Installation
 
-  npm install ha-api --save
+  npm install automation-api --save
 
 ## Usage
 
-  var ha-api = require('ha-api')(router)
+  var automation-api = require('automation-api')(router)
 
   REST API for dio device
   
