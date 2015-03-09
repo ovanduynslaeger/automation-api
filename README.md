@@ -1,6 +1,13 @@
 # automation-api
 Home Automation API
 
+## Requirements
+
+  * [WiringPi must be installed](https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/) in order to compile.
+  * RCSwitch module must be installed https://www.npmjs.com/package/rcswitch
+  
+
+
 ## Installation
 
   npm install automation-api --save
@@ -33,3 +40,4 @@ Home Automation API
 * 0.1.3 Errors management
 * 0.1.4 Include rcsiwtch module and create .cpp for dio
 * 0.1.5 Compilation correction
+* 0.1.6 Add dependencies
