@@ -65,11 +65,11 @@ class RCSwitchDioNode : node::ObjectWrap {
     // notification.enableTransmit();
     static v8::Handle<Value> EnableTransmit(const Arguments& args) {
       v8::HandleScope scope;
-      RCSwitchDioNode* RCSwitchDioNode_instance = node::ObjectWrap::Unwrap<RCSwitchDioNode>(args.This());
+      RCSwitchDioNode* thiz = node::ObjectWrap::Unwrap<RCSwitchDioNode>(args.This());
       
       v8::Handle<v8::Value> pinNr = args[0];
       if(pinNr->IsInt32()) {
-        RCSwitchDioNode_instance->rcswitch.enableTransmit(pinNr->Int32Value());
+        thiz->rcswitch.enableTransmit(pinNr->Int32Value());
         return v8::Boolean::New(true);
       } else {
         return v8::Boolean::New(false);
@@ -91,7 +91,7 @@ class RCSwitchDioNode : node::ObjectWrap {
         v8::Handle<v8::Value> remoteCode = args[0];
 
         if(remoteCode->IsInt32()) {
-          RCSwitchDioNode_instance->rcswitch.setRemoteCode(remoteCode->Int32Value());
+          thiz->rcswitch.setRemoteCode(remoteCode->Int32Value());
           return v8::Boolean::New(true);
         } else {
           return v8::Boolean::New(false);
