@@ -32,3 +32,4 @@ Home Automation API
 * 0.1.2 Apis path modify
 * 0.1.3 Errors management
 * 0.1.4 Include rcsiwtch module and create .cpp for dio
+* 0.1.5 Compilation correction
