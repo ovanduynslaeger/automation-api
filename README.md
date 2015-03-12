@@ -44,3 +44,4 @@ Home Automation API
 * 0.1.6 Add dependencies
 * 0.1.7 Externalize HE module
 * 0.1.8 Change dependencies
+* 0.1.9 Change dependencies
