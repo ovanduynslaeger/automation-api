@@ -4,7 +4,7 @@
   "description": "Home Automation API",
   "main": "index.js",
   "dependencies": {
-      "rcswitch": "^0.1.0"
+      "rcswitch": "^0.1.0",
       "rc-switch-he": "^0.1.0"
   },
   "devDependencies": {
