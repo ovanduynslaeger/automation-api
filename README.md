@@ -4,33 +4,34 @@ Home Automation API
 ## Requirements
 
   * [WiringPi must be installed](https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/) in order to compile.
-  * RCSwitch module must be installed https://www.npmjs.com/package/rcswitch
+  * RCSwitch module must be installed https://www.npmjs.com/package/rcswitch (dependencies)
+  * RCSwitchHE module must be installed https://github.com/ovanduynslaeger/rc-switch-he (dependencies)
+
   
-
-
 ## Installation
 
   npm install automation-api --save
 
 ## Usage
 
-  var automation-api = require('automation-api')(router)
+  require('automation-api')(router)
 
-  REST API for dio device
+  REST API for Home Easy device (DIO, Chacon)
   
-  /dio/remote/<remoteDioCode>/device/<deviceId>/command/on
+  /rcswitchhe/remote/<remoteDioCode>/device/<deviceId>/command/on
   
-  /dio/remote/<remoteDioCode>/device/<deviceId>/command/up
+  /rcswitchhe/remote/<remoteDioCode>/device/<deviceId>/command/up
   
-  /dio/device/<deviceId>/command/off
+  /rcswitchhe/remote/<remoteDioCode>/device/<deviceId>/command/off
   
-  /dio/device/<deviceId>/command/down
+  /rcswitchhe/remote/<remoteDioCode>/device/<deviceId>/command/down
+
   
-  REST API for rf433 device
+  REST API for RCSwitch device
   
-  /rf433/home/<homeCode>/device/<deviceId>/command/on
+  /rcswitch/group/<group>/device/<deviceId>/command/on
   
-  /rf433/home/<homeCode>/device/<deviceId>/command/off
+  /rcswitch/group/<group>/device/<deviceId>/command/off
   
 ## Release History
 
@@ -41,3 +42,4 @@ Home Automation API
 * 0.1.4 Include rcsiwtch module and create .cpp for dio
 * 0.1.5 Compilation correction
 * 0.1.6 Add dependencies
+* 0.1.7 Externalize HE module
