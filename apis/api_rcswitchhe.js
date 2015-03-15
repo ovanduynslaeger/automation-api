@@ -1,9 +1,8 @@
-//var exec = require('child_process').exec;
 var rcswitchhe = require('rc-switch-he'); 
 
 exports.deviceCommand = function(req, res){
-    var remoteDio = req.params.remote;
-    var deviceId = req.params.deviceId;
+    var remoteDio = parseInt(req.params.remote);
+    var deviceId = parseInt(req.params.deviceId);
     var command = req.params.command;
 
     runDeviceCommand(remoteDio, deviceId,command,function(error) {
@@ -11,7 +10,7 @@ exports.deviceCommand = function(req, res){
             res.send (error);
         }
         else {
-            res.send('{ "data" : { "device": '+deviceId+', "command: '+command+'} }');
+            res.send('{ "data" : { "remote": '+remoteDio+', "device": '+deviceId+', "command": '+command+'} }');
         }
     });
 
@@ -34,26 +33,18 @@ function runDeviceCommand(remoteDio, deviceId,command,callback) {
 
     var commandCode = translateCommand(command);
     if (commandCode != null) {
-        //var commandLine = 'sudo send-dio 0 '+remoteDio+' '+deviceId+' '+commandCode;
-    
-        //console.log(commandLine);
+        rcswitchhe.enableTransmit(0);
+        rcswitchhe.setRemoteCode(remoteDio);
         switch (commandCode) {
             case "1":
-                rcswitchhe.switchOn(remoteDio, deviceId); 
+                rcswitchhe.switchOn(deviceId); 
                 callback(null);
+                break;
             case "0":
-                rcswitchhe.switchOff(remoteDio, deviceId);
+                rcswitchhe.switchOff(deviceId);
                 callback(null);
-            default:
-                callback( new Error("Invalid command " + command));
+                break;
         }        
-        /*
-         exec(commandLine, function (error, stdout, stderr) {
-          if(error) console.error(error);
-          //return null if no error 
-          callback(error);
-        });
-        */
     } else {
         callback( new Error("Invalid command " + command));
     }

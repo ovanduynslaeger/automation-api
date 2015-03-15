@@ -1,4 +1,3 @@
-//var exec = require('child_process').exec;
 var rcswitch = require('rcswitch'); // Might throw an error if wiring pi init failed (no root)
 
 
@@ -12,7 +11,7 @@ exports.deviceCommand = function(req, res){
             res.send (error);
         }
         else {
-            res.send('{ "data" : { "device": '+deviceId+', "command: '+command+'} }');
+            res.send('{ "data" : { "group" : '+homeCode+' , "device": '+deviceId+', "command: '+command+'} }');        
         }
     });
 
@@ -20,7 +19,7 @@ exports.deviceCommand = function(req, res){
 
 function translateCommand(word){
     switch (word) {
-        case "on":
+        case "on":  
             return "1";
         case "off":
             return "0";
@@ -32,28 +31,19 @@ function translateCommand(word){
 
 function runDeviceCommand(homeCode,deviceId,command,callback) {
 
-    //if (commandCode != null) {
-/*        var commandLine = 'sudo send-rf433 0 '+homeCode+' '+deviceId+' '+commandCode;
-    
-    console.log(commandLine);
-         exec(commandLine, function (error, stdout, stderr) {
-              if(error) console.error(error);
-              //return null if no error 
-              callback(error);
-          });
-*/
-
     var commandCode = translateCommand(command);
-    rcswitch.enableTransmit(0); // Use data Pin 0
     //transcode A=1 B=2 etc...
     var noDevice = deviceId.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
+    rcswitch.enableTransmit(0); // Use data Pin 0
     switch (commandCode) {
         case "1":
             rcswitch.switchOn(homeCode, noDevice); 
             callback(null);
+            break;
         case "0":
             rcswitch.switchOff(homeCode, noDevice);
             callback(null);
+            break;
         default:
             callback( new Error("Invalid command " + command));
     }
