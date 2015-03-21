@@ -4,8 +4,10 @@ Home Automation API
 ## Requirements
 
   * [WiringPi must be installed](https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/) in order to compile.
+  * [LIRC must be installed](http://www.lirc.org/)
   * RCSwitch module must be installed https://www.npmjs.com/package/rcswitch (dependencies)
   * RCSwitchHE module must be installed https://github.com/ovanduynslaeger/rc-switch-he (dependencies)
+  * lirc-node module must be installed https://www.npmjs.com/package/lirc_node(dependencies)
 
   
 ## Installation
@@ -55,3 +57,4 @@ Home Automation API
 * 0.1.9 Change dependencies
 * 0.1.10 Raspberry validation
 * 0.1.11 Add lirc api
+* 0.1.12 lirc command correction
