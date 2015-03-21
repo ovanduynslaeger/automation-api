@@ -32,6 +32,14 @@ Home Automation API
   /rcswitch/group/<group>/device/<deviceId>/command/on
   
   /rcswitch/group/<group>/device/<deviceId>/command/off
+
+
+  LIRC API for Infrared Remote
+  
+  /lirc/device/<deviceId>/command/<command>
+  
+  /lirc/device/<deviceId>/command/<command>/iterate/<number>
+  
   
 ## Release History
 
@@ -46,3 +54,4 @@ Home Automation API
 * 0.1.8 Change dependencies
 * 0.1.9 Change dependencies
 * 0.1.10 Raspberry validation
+* 0.1.11 Add lirc api
