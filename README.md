@@ -58,3 +58,4 @@ Home Automation API
 * 0.1.10 Raspberry validation
 * 0.1.11 Add lirc api
 * 0.1.12 lirc command correction
+* 0.1.13 lirc command vol iterate correction

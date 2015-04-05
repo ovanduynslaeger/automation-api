@@ -32,29 +32,19 @@ exports.deviceCommand = function(req, res){
 
 };
 
-function translateCommand(word,iterate){
-    var it = Math.abs(parseInt(iterate));
-    var v=word;
-    var i;
-    for (i=1; i < it; i++) {
-      v = v + " " + word;
-    }
-    return v;
-}
-
-
 function runDeviceCommand(deviceId,command,it,callback) {
 
     lirc_node.init();
     //console.log(lirc_node.remotes);
 
-    var commandCode = translateCommand(command,it);
-
-    if (commandCode!=null) {
-        lirc_node.irsend.send_once(deviceId, commandCode, function() {
-          console.log("Sent LIRC command " + commandCode + " on device " + deviceId);
-          callback(null);
-        });
+    if (command!=null) {
+        var pi = Math.abs(parseInt(it));
+        for (var i=0; i < pi; i++) {
+                lirc_node.irsend.send_once(deviceId, command, function() {
+                   console.log("Sent LIRC command " + command + " on device " + deviceId);
+                })
+        };
+        callback(null);
     }
     else {
         callback( new Error("Invalid command " + command));
