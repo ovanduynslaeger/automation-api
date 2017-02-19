@@ -60,3 +60,4 @@ Home Automation API
 * 0.1.12 lirc command correction
 * 0.1.13 lirc command vol iterate correction
 * 0.1.14 Rebuild
+* 0.1.16 Rebuild

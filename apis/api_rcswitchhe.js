@@ -34,14 +34,13 @@ function runDeviceCommand(remoteDio, deviceId,command,callback) {
     var commandCode = translateCommand(command);
     if (commandCode != null) {
         rcswitchhe.enableTransmit(0);
-        rcswitchhe.setRemoteCode(remoteDio);
         switch (commandCode) {
             case "1":
-                rcswitchhe.switchOn(deviceId); 
+                rcswitchhe.switchOn(remoteDio,deviceId); 
                 callback(null);
                 break;
             case "0":
-                rcswitchhe.switchOff(deviceId);
+                rcswitchhe.switchOff(remoteDio,deviceId);
                 callback(null);
                 break;
         }        
