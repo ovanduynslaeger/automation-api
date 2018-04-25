@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "lirc_node": "0.0.1",
-    "rc-switch-he": "^0.1.7",
+    "rc-switch-he": "^0.2.0",
     "rcswitch": "^0.3.1"
   },
   "devDependencies": {
